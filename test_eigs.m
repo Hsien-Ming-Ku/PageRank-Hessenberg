@@ -1,5 +1,7 @@
 % Copyright (c) 2015 Reinaldo Astudillo
-%
+% Modified by Dr. Xian-Ming Gu, who is an assistant professor in School of Economic Mathematics, Southwestern 
+% University of Finance and Economics, Chengdu, Sichuan 611130, P.R. China.
+% Date: 2019/3/18 19:33
 % Permission is hereby granted, free of charge, to any person obtaining a copy
 % of this software and associated documentation files (the "Software"), to deal
 % in the Software without restriction, including without limitation the rights
