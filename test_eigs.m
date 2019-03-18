@@ -49,7 +49,7 @@ eIdr_s = sort(eig(H2(1:m,1:m)));
 t_idr_s = toc,
 
 tic;
-[V,H3] = arnoldi(A,w0,m);
+[V,H3] = arnoldi0(A,w0,m);
 eAr = sort(eig(H3(1:m,1:m)));
 t_ar = toc,
 
