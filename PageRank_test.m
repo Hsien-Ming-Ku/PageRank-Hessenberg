@@ -15,7 +15,7 @@ clear;
 % clc;
 close;
 tol = 1e-8;
-dim = 7;
+dim = 8;
 maxit = 800;
 %% ------------ generate the PageRank problems ------------
 load amazon-2008; % the web adjacency matrix 
@@ -28,7 +28,7 @@ G = Problem.A;
 clear Problem;
 %%%        initialization of the PageRank problem 
 %%%        fomating A into A = P' + h*f
-alpha = 0.999;                    % Damping factor for pagerank problem
+alpha = 0.99;                    % Damping factor for pagerank problem
 n = size(G,2);                   % dimension of the web adjacency matrix G
 nnzG = nnz(G);
 I = speye(n);
@@ -54,57 +54,46 @@ q = ones(n,1);
 q = q/norm(q,1);
 % matvec = 0;
 %%---- Test the Arnoldi-type algorithm --------------------
-it_pow = 40;
 tic;
-[q1,iter1,res1] = ArnoldiPagerank(A,q,dim,maxit,tol,it_pow);
+[q1,iter1,res1] = ArnoldiPagerank(A,q,dim,maxit,tol);
 t1 = toc;
 fprintf('- CPU time for Arnoldi-type algorithm: %.4f.\n ', t1);
 fprintf('- Outer iters for Arnoldi-type algorithm: %.4g.\n ', iter1);
 % %% --------------------------------------------------------------------
 % ---- Test the weighted Arnoldi-type algorithm --------------------
 tic;
-[q2,iter2,res2] = weighted_ArnoldiPagerank(A,q,tol,dim,maxit,it_pow);
+[q2,iter2,res2] = weighted_ArnoldiPagerank(A,q,tol,dim,maxit);
 t2 = toc;
 fprintf('- CPU time for GArnoldi-type algorithm: %.4f.\n ', t2);
 fprintf('- Outer iters for GArnoldi-type algorithm: %.4g.\n ', iter2);
-% % ---- Test the Power method -----------------------
-% maxit = dim*maxit;
-% tic;
-% [q3,iter3,mv1,res3] = Power_func(A,q,tol,maxit);
-% t3 = toc;
-% fprintf('- CPU time for the Power-type method: %.4f.\n ', t3);
-% fprintf('- Number of MatVecs for the Power-type method: %.4g.\n ', iter3);
-% %%% --------------------------------------------------------------------
-% % ----- Test the Power + extrapolation method (X. Tan, 2017) --------
-% maxit = dim*maxit;
-% tic;
-% [q4,iter4,mv2,res4] = Power_extrapolation_func(A,q,alpha,l,tol,maxit);
-% t4 = toc;
-% fprintf('- CPU time for the Power-Ext method: %.4f.\n ', t4);
-% fprintf('- Number of MatVecs for the Power-Ext method: %.4g.\n ', iter4);
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %% ---- Test the Power + QE algorithm --------------------
-% maxit = dim*maxit;
-% tic;
-% [x0, iter, mv, res] = Power_QE_func(A, q, tol, maxit);
-% t6 = toc;
-% fprintf('- CPU time for Power + QE method: %.4f.\n ', t6);
-% fprintf('- Outer iters for Power + QE method: %.4g.\n ', iter);
-% %%%%%%%%%%% Test the Hessenberg algorithm ------------------
-% it_pow = 50;
+ % ---- Test the Power method -----------------------
+ maxit = dim*maxit;
+ tic;
+ [q3,iter3,mv1,res3] = Power_func(A,q,tol,maxit);
+ t3 = toc;
+ fprintf('- CPU time for the Power-type method: %.4f.\n ', t3);
+ fprintf('- Number of MatVecs for the Power-type method: %.4g.\n ', iter3);
+ %%% --------------------------------------------------------------------
+ % ----- Test the Power + extrapolation method (X. Tan, 2017) --------
+ maxit = dim*maxit;
+ tic;
+ [q4,iter4,mv2,res4] = Power_extrapolation_func(A,q,alpha,l,tol,maxit);
+ t4 = toc;
+ fprintf('- CPU time for the Power-Ext method: %.4f.\n ', t4);
+ fprintf('- Number of MatVecs for the Power-Ext method: %.4g.\n ', iter4);
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %% ---- Test the Power + QE algorithm --------------------
+ maxit = dim*maxit;
+ tic;
+ [x0, iter, mv, res] = Power_QE_func(A, q, tol, maxit);
+ t6 = toc;
+ fprintf('- CPU time for Power + QE method: %.4f.\n ', t6);
+ fprintf('- Outer iters for Power + QE method: %.4g.\n ', iter);
+ %%%%%%%%%%% Test the Hessenberg algorithm ------------------
 tic;
-[q5,iter5,res5] = HessenPagerank(A,q,dim,maxit,tol,it_pow);
+[q5,iter5,res5] = HessenPagerank(A,q,dim,maxit,tol);
 t5 = toc;
 fprintf('- CPU time for Hessenberg-type algorithm: %.4f.\n ', t5);
 fprintf('- Outer iters for Hessenberg-type algorithm: %.4g.\n ', iter5);
-%%%%%%%%%%%%% Test the IDR(4) algorithm ------------------
-% s = 4;
-% dim = 8;
-% it_pow = 20;
-% tic;
-% [q,iter,resvec,mv] = IDRsPagerank(A,Atrace,s,dim,q,maxit,it_pow,tol);
-% t6 = toc;
-% fprintf('- CPU time for IDR(s)-type algorithm: %.4f.\n ', t6);
-% fprintf('- Outer iters for IDR(s)-type algorithm: %.4g.\n ', iter);
 
 disp('+++++++++++++++++++++++ end test ++++++++++++++++++++++++++++++++');
