@@ -1,4 +1,4 @@
-function [xm,iter,res] = weighted_ArnoldiPagerank(A,q,tol,dim,itmax,it_pow)
+function [xm,iter,res] = weighted_ArnoldiPagerank(A,q,tol,dim,itmax)
 % The restarted adpative refined weighted Arnoldi process for computing 
 % PageRank, which is proposed by J.-F. Yin, G.-J. Yin, M. Ng (2012), NLAA,
 % 19: 73-85.
@@ -83,12 +83,6 @@ while (it < itmax) && (nres > tol)
      end
      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      if (it < itmax) && (nres > tol)        
-         for k = 1:it_pow
-%             mv = mv + 1;
-            xm = xm/norm(xm,1);
-%         w0 = q; w0 = w0/norm(w0);  % The first choice
-            xm = A(xm);
-        end
         tem =(abs(rm));
         wt = tem/norm(tem,1);
         beta = normw(xm,wt); %%% -- show that weighted techniques is used
