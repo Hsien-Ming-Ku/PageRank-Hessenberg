@@ -1,4 +1,4 @@
-function [q,iter,res] = HessenPagerank(A,q,dim,itmax,tol,it_pow)
+function [q,iter,res] = HessenPagerank(A,q,dim,itmax,tol)
 % The restarted and refined Hessenberg process for computing PageRank,
 % which will be proposed by X.-M. Gu, S.-L. Lei, Z.-L. Shen, K. Zhang, C.
 % Wen (2018, in preparation). 
@@ -78,12 +78,6 @@ while (it < itmax) && (nres > tol)
     end
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if (it < itmax) && (nres > tol)
-         for k = 1:it_pow
-%             mv = mv + 1;
-            q = q/norm(q,1);
-%         w0 = q; w0 = w0/norm(w0);  % The first choice
-            q = A(q);
-        end
         [~,i0] = max(abs(q)); 
         beta = q(i0);
         p(1) = i0; L(:,1) = q/beta;
