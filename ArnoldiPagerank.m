@@ -1,4 +1,4 @@
-function [q,iter,res] = ArnoldiPagerank(A,q,dim,itmax,tol,it_pow)
+function [q,iter,res] = ArnoldiPagerank(A,q,dim,itmax,tol)
 % The restarted refined Arnoldi process for computing PageRank, which is 
 % proposed by G. H. Golub, C. Greif (2006), BIT Numer. Math., 46: 759-771.
 % -----------------------------------------------------------------------
@@ -76,14 +76,8 @@ while (it < itmax) && (nres > tol)
 %     norm(q),
 %%%%%%%%%%%%%%%%%%%%%
     if (it < itmax) && (nres > tol)
-        for k = 1:it_pow
-%             mv = mv + 1;
-            q = q/norm(q,1);
-%         w0 = q; w0 = w0/norm(w0);  % The first choice
-            q = A(q);
-        end
-        beta = norm(q);
-        L(:,1) = q/beta;
+        w0 = q/norm(q);  % The first choice
+        L(:,1) = w0;
     end
 end
 iter = it;
