@@ -21,7 +21,7 @@ function [L,H] = Gene_Hessenberg(A,v,m)
 % Contact information:
 % e-mail: guxianming@live.cn, x.m.gu@rug.nl
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Date: 03-07-2018. 17:43 (The University of Macau)
+% Date: 03-07-2018. 17:43 (The University of Macau) (Old version)
 
 % Begin to implement the GH-process with pivoting strategy for A
 
