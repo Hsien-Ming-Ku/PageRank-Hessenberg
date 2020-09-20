@@ -1,7 +1,10 @@
 % Numerical tests for computing PageRank by means of 
 % 1. Arnoldi-type method
-% 4. Power method;
-% 5. Power-LE method; from Dr. Xueyuan Tan (JCAM 2017)
+% 2. Adaptively accelerated Arnoldi-type method
+% 3. Power method
+% 4. Power-LE method; from Dr. Xueyuan Tan (JCAM 2017);
+% 5. QE method
+% 6. Hessenberg-type method
 % ---------------------------------------------------------------
 % written by Dr. Xian-Ming Gu, who recently works at the School of Economic
 % Mathematics, SWUFE.
@@ -19,12 +22,7 @@ dim = 8;
 maxit = 800;
 %% ------------ generate the PageRank problems ------------
 load amazon-2008; % the web adjacency matrix 
-% cnr-2000 fail
-% in-2000 fail
-% eu-2005
-%load('D:\sx-stackoverflow.mat');  % web adjacency matrix file
 G = Problem.A;
-% G = CS;
 clear Problem;
 %%%        initialization of the PageRank problem 
 %%%        fomating A into A = P' + h*f
