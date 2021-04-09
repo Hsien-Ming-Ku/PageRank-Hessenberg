@@ -1,7 +1,15 @@
 function [q,iter,res,mv] = IDRsPagerank(A,Atrace,s,dim,q,itmax,it_pow,tol)
-%%%%%
-%%%%%%%%
-%%%%%%%%%%%
+% The IDR(s)-based Hessenberg decomposition can be derived for computing PageRank, which is 
+% proposed by G. H. Golub, C. Greif (2006), BIT Numer. Math., 46: 759-771.
+% -----------------------------------------------------------------------
+% written by Dr. Xian-Ming Gu, who recently works at the School of Economic
+% Mathematics, SWUFE.
+% Date: 24 July, 2018, the Visting Scholar at University of Macau
+%       4 January, 2019 (modified some parts), at SWUFE
+%       7 January, 2019 (modified some parts), at SWUFE
+%       14 March, 2020 (modified some parts), at SWUFE
+% Email: guxianming@live.cn, guxm@swufe.edu.cn
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 n = length(q);
 w0 = q; w0 = w0/norm(w0);
 m = dim;
