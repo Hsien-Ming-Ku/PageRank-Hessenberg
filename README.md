@@ -14,7 +14,7 @@ PS: some details about runing the test, one can refer to the Repository from htt
 5) Hessenberg-type method
 6) IDR(s)-based method (newly added, 2021-4-9)
 
-2. Who want to run the PageRank test for comparison.
+3. Who want to run the PageRank test for comparison.
 1) Download the necessary test matrices listed in our paper (i.e.,
 soc-Slashdot0902,
 amazon0312,
