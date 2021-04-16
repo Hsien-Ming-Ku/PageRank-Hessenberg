@@ -12,7 +12,7 @@ PS: some details about runing the test, one can refer to the Repository from htt
 3) Power method + quadratic extrapolation
 4) Arnoldi-type method
 5) Hessenberg-type method
-6) IDR(s)-based method (newly added, 2021-4-9)
+6) IDR(s)-based method (newly added, 2021-4-9), Hints: if the dimension of Krylov subspace reads 8 or 10, the suggested value of s = 4 or 6. 
 
 3. Who want to run the PageRank test for comparison.
 1) Download the necessary test matrices listed in our paper (i.e.,
